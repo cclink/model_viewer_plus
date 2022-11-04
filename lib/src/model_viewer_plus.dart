@@ -72,6 +72,8 @@ class ModelViewer extends StatefulWidget {
     this.relatedCss,
     this.relatedJs,
     this.id,
+    this.onError,
+    this.onLoaded,
   }) : super(key: key);
 
   // Loading Attributes
@@ -565,6 +567,10 @@ class ModelViewer extends StatefulWidget {
 
   /// The id of the [ModelViewer] in HTML.
   final String? id;
+
+  final Function? onLoaded; 
+
+  final Function? onError;
 
   @override
   State<ModelViewer> createState() => ModelViewerState();

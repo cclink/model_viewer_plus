@@ -147,6 +147,7 @@ class ModelViewerState extends State<ModelViewer> {
           //print('>>>> ModelViewer finished loading: <$url>'); // DEBUG
         },
         onWebResourceError: (final WebResourceError error) {
+          widget.onError?.call();
           print(
               '>>>> ModelViewer failed to load: ${error.description} (${error.errorType} ${error.errorCode})'); // DEBUG
         },
@@ -282,6 +283,7 @@ class ModelViewerState extends State<ModelViewer> {
               ..add(data);
             await response.close();
           }
+          widget.onLoaded?.call();
           break;
 
         case '/favicon.ico':
