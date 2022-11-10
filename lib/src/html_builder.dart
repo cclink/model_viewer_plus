@@ -333,14 +333,14 @@ abstract class HTMLBuilder {
       if (shadowIntensity < 0 || shadowIntensity > 1) {
         throw RangeError('shadow-intensity must be between 0 and 1');
       }
-      html.write(' shadow-intensity="$shadowIntensity}"');
+      html.write(' shadow-intensity="$shadowIntensity"');
     }
     // shadow-softness
     if (shadowSoftness != null) {
       if (shadowSoftness < 0 || shadowSoftness > 1) {
         throw RangeError('shadow-softness must be between 0 and 1');
       }
-      html.write(' shadow-softness="$shadowSoftness}"');
+      html.write(' shadow-softness="$shadowSoftness"');
     }
 
     // Animation Attributes
