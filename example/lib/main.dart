@@ -4,7 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:model_viewer_plus/model_viewer_plus.dart';
 
 void main() => runApp(MyApp());
+String relatedCss = '''
+  model-viewer::part(default-progress-bar){
+    display: none;
+  }
+''';
 
+String relatedJs = '''
+  const onVisible = (event) => {
+    if (event.detail.visible === true) {
+      sendMessageToFlutter('');
+    }
+  };
+
+  document.querySelector('model-viewer').addEventListener('model-visibility', onVisible);
+''';
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -13,13 +27,17 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(title: Text("Model Viewer")),
         body: ModelViewer(
           backgroundColor: Color.fromARGB(0xFF, 0xEE, 0xEE, 0xEE),
-          src: 'assets/Astronaut.glb', // a bundled asset file
+          src: 'https://res.app.ikea.cn/sales-item/3d-models/19270271/19270271.glb',
           alt: "A 3D model of an astronaut",
-          ar: true,
+          ar: false,
           arModes: ['scene-viewer', 'webxr', 'quick-look'],
           autoRotate: true,
           cameraControls: true,
-          iosSrc: 'https://modelviewer.dev/shared-assets/models/Astronaut.usdz',
+          relatedJs: relatedJs,
+          relatedCss: relatedCss,
+          onLoaded: (){
+            print('load success');
+          }
         ),
       ),
     );

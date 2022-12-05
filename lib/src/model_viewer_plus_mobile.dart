@@ -151,6 +151,13 @@ class ModelViewerState extends State<ModelViewer> {
           print(
               '>>>> ModelViewer failed to load: ${error.description} (${error.errorType} ${error.errorCode})'); // DEBUG
         },
+        javascriptChannels: <JavascriptChannel>{
+          JavascriptChannel(
+              name: "toFlutterMessage",  
+              onMessageReceived: (JavascriptMessage message) {
+                widget.onLoaded?.call();
+              }),
+        },
       );
     }
   }
@@ -283,7 +290,6 @@ class ModelViewerState extends State<ModelViewer> {
               ..add(data);
             await response.close();
           }
-          widget.onLoaded?.call();
           break;
 
         case '/favicon.ico':

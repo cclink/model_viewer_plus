@@ -415,6 +415,11 @@ abstract class HTMLBuilder {
 
     if (relatedJs != null) {
       html.writeln('<script>');
+      html.writeln('''
+        function sendMessageToFlutter(message) {
+          toFlutterMessage.postMessage(message);
+        }
+      ''');
       html.write(relatedJs);
       html.writeln('</script>');
     }
