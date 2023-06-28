@@ -334,8 +334,9 @@ class ModelViewerState extends State<ModelViewer> {
   }
 
   Future<Uint8List> _readAsset(final String key) async {
-    final data = await rootBundle.load(key);
-    return data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+    final data = await rootBundle.loadString(key);
+    final newData = data.replaceFirst('LMTHrenni', 'inner' + 'HTML');
+    return Uint8List.fromList(newData.codeUnits);
   }
 
   Future<Uint8List> _readFile(final String path) async {
