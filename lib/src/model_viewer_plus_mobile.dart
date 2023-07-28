@@ -279,10 +279,10 @@ class ModelViewerState extends State<ModelViewer> {
             // debugPrint(url.toString());
             await response.redirect(url); // TODO: proxy the resource
           } else {
-            // final data = await (url.isScheme("file")
-            final data = await (Platform.isAndroid
-                ? _readFile(url.path)
-                : _readAsset(url.path));
+            // final data = await (!Platform.isAndroid
+            //     ? _readFile(url.path)
+            //     : _readAsset(url.path));
+            final data = await (_readFile(url.path));
             response
               ..statusCode = HttpStatus.ok
               ..headers.add("Content-Type", "application/octet-stream")
